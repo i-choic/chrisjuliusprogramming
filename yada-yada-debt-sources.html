@@ -20,52 +20,29 @@
   <script>
     $(document).ready(function(){
       $userVar = 1;
-      $("#dropdown-credit-card").click(function(){
-      var $copy = $("#debt-credit-card-input-box").clone();
-      var $newID = $copy.attr('id') + " " + $userVar;
-      $copy = $copy.attr("id",$newID);
-      $userVar++;
-      $copy.appendTo("#paste-area");
-      $copy.show();
-      $(".link2").click(function(){
-      $($copy).remove();
-      $userVar--;
-      $("#debt-selector-box").show();
-      });
-      $("#debt-selector-box").hide();
-      });
-      $("#dropdown-student-loan").click(function(){
-      var $copy = $("#debt-student-loan-input-box").clone();
-      var $id = $copy.attr('id')
-      $copy = $copy.attr("id",$id + " 1");
-      $copy.appendTo("#paste-area");
-      $copy.show();
-      $("#debt-selector-box").hide();
-      });
-      $("#dropdown-payday-loan").click(function(){
-      var $copy = $("#debt-payday-loan-input-box").clone();
-      var $id = $copy.attr('id')
-      $copy = $copy.attr("id",$id + " 1");
-      $copy.appendTo("#paste-area");
-      $copy.show();
-      $("#debt-selector-box").hide();
-      });
-      $("#dropdown-loan").click(function(){
-      var $copy = $("#debt-loan-input-box").clone();
-      var $id = $copy.attr('id')
-      $copy = $copy.attr("id",$id + " 1");
-      $copy.appendTo("#paste-area");
-      $copy.show();
-      $("#debt-selector-box").hide();
-      });
-      $("#dropdown-legal-obligation").click(function(){
-      var $copy = $("#debt-legal-obligation-input-box").clone();
-      var $id = $copy.attr('id')
-      $copy = $copy.attr("id",$id + " 1");
-      $copy.appendTo("#paste-area");
-      $copy.show();
-      $("#debt-selector-box").hide();
-      });
+      var cloneAndAddFunctionality = function(inputBox) {
+        var $copy = $(inputBox).clone();
+        var $newID = $copy.attr('id') + " " + $userVar;
+        $copy = $copy.attr("id",$newID);
+        $userVar++;
+        $copy.appendTo("#paste-area");
+        $copy.show();
+        $(".link2").click(function(){
+          $($copy).remove();
+          $userVar--;
+          $("#debt-selector-box").show();
+        });
+        $('#wf-form-Credit-Card-Form').submit(function() {
+          console.log('test');
+          return true; // return false to cancel form action
+        });
+        $("#debt-selector-box").hide();
+      }
+      $("#dropdown-credit-card").click(function(){ cloneAndAddFunctionality("#debt-credit-card-input-box") });
+      $("#dropdown-student-loan").click(function(){ cloneAndAddFunctionality("#debt-student-loan-input-box") });
+      $("#dropdown-payday-loan").click(function(){ cloneAndAddFunctionality("#debt-payday-loan-input-box") });
+      $("#dropdown-loan").click(function(){ cloneAndAddFunctionality("#debt-loan-input-box") });
+      $("#dropdown-legal-obligation").click(function(){ cloneAndAddFunctionality("#debt-legal-obligation-input-box") });
     });
   </script>
 
