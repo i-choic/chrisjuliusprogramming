@@ -19,10 +19,52 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
+      $userVar = 1;
       $("#dropdown-credit-card").click(function(){
-        $("#debt-credit-card-input-box").clone().appendTo("#paste-area");
-        $("#debt-credit-card-input-box").show();
-
+      var $copy = $("#debt-credit-card-input-box").clone();
+      var $newID = $copy.attr('id') + " " + $userVar;
+      $copy = $copy.attr("id",$newID);
+      $userVar++;
+      $copy.appendTo("#paste-area");
+      $copy.show();
+      $(".link2").click(function(){
+      $($copy).remove();
+      $userVar--;
+      $("#debt-selector-box").show();
+      });
+      $("#debt-selector-box").hide();
+      });
+      $("#dropdown-student-loan").click(function(){
+      var $copy = $("#debt-student-loan-input-box").clone();
+      var $id = $copy.attr('id')
+      $copy = $copy.attr("id",$id + " 1");
+      $copy.appendTo("#paste-area");
+      $copy.show();
+      $("#debt-selector-box").hide();
+      });
+      $("#dropdown-payday-loan").click(function(){
+      var $copy = $("#debt-payday-loan-input-box").clone();
+      var $id = $copy.attr('id')
+      $copy = $copy.attr("id",$id + " 1");
+      $copy.appendTo("#paste-area");
+      $copy.show();
+      $("#debt-selector-box").hide();
+      });
+      $("#dropdown-loan").click(function(){
+      var $copy = $("#debt-loan-input-box").clone();
+      var $id = $copy.attr('id')
+      $copy = $copy.attr("id",$id + " 1");
+      $copy.appendTo("#paste-area");
+      $copy.show();
+      $("#debt-selector-box").hide();
+      });
+      $("#dropdown-legal-obligation").click(function(){
+      var $copy = $("#debt-legal-obligation-input-box").clone();
+      var $id = $copy.attr('id')
+      $copy = $copy.attr("id",$id + " 1");
+      $copy.appendTo("#paste-area");
+      $copy.show();
+      $("#debt-selector-box").hide();
       });
     });
   </script>
@@ -107,7 +149,7 @@
             </div>
           </div>
         </div>
-        <div id="debt-credit-card-output-box" class="div-block box">
+        <div id="debt-credit-card-output-box" class="div-block box" style="display:none">
           <div id="credit-card-form-complete" class="w-form">
             <div>
               <div class="row w-row">
@@ -139,7 +181,7 @@
             </div>
           </div>
         </div>
-        <div id="debt-student-loan-input-box" class="div-block box">
+        <div id="debt-student-loan-input-box" class="div-block box" style="display:none">
           <div id="student-loan-form" class="w-form">
             <div>
               <div id="select-type" class="row w-row">
@@ -166,7 +208,7 @@
             </div>
           </div>
         </div>
-        <div id="debt-student-loan-output-box" class="div-block box">
+        <div id="debt-student-loan-output-box" class="div-block box" style="display:none">
           <div id="student-loan-form-complete" class="w-form">
             <div>
               <div id="select-type" class="row w-row">
@@ -198,7 +240,7 @@
             </div>
           </div>
         </div>
-        <div id="debt-payday-loan-input-box" class="div-block box">
+        <div id="debt-payday-loan-input-box" class="div-block box" style="display:none">
           <div id="payday-loan-form" class="w-form">
             <div>
               <div id="select-type" class="row w-row">
@@ -225,7 +267,7 @@
             </div>
           </div>
         </div>
-        <div id="debt-payday-loan-output-box" class="div-block box">
+        <div id="debt-payday-loan-output-box" class="div-block box" style="display:none">
           <div id="student-loan-form-complete" class="w-form">
             <div>
               <div id="select-type" class="row w-row">
@@ -257,7 +299,7 @@
             </div>
           </div>
         </div>
-        <div id="debt-loan-input-box" class="div-block box">
+        <div id="debt-loan-input-box" class="div-block box" style="display:none">
           <div id="loan-form" class="w-form">
             <div>
               <div id="select-type" class="row w-row">
@@ -284,7 +326,7 @@
             </div>
           </div>
         </div>
-        <div id="debt-loan-output-box" class="div-block box">
+        <div id="debt-loan-output-box" class="div-block box" style="display:none">
           <div id="student-loan-form-complete" class="w-form">
             <div>
               <div id="select-type" class="row w-row">
@@ -316,7 +358,7 @@
             </div>
           </div>
         </div>
-        <div id="debt-legal-obligation-input-box" class="div-block box">
+        <div id="debt-legal-obligation-input-box" class="div-block box" style="display:none">
           <div id="loan-form" class="w-form">
             <div>
               <div id="select-type" class="row w-row">
@@ -343,7 +385,7 @@
             </div>
           </div>
         </div>
-        <div id="debt-legal-obligation-output-box" class="div-block box">
+        <div id="debt-legal-obligation-output-box" class="div-block box" style="display:none">
           <div id="student-loan-form-complete" class="w-form">
             <div>
               <div id="select-type" class="row w-row">
