@@ -23,7 +23,7 @@
       var user = localStorage.getItem('userID');
       var userData = null;
       if(user) {
-        userData = localStorage.getItem('userData');
+        //userData = localStorage.getItem('userData');
         //console.log( JSON.parse(localStorage.getItem('userData1')));
         //console.log(localStorage.getItem('userDataAmount'));
         //$userVar = localStorage.getItem('userDataAmount')+1;
@@ -31,16 +31,27 @@
         localStorage.setItem('userID', String(Date.now())+Math.floor(Math.random()*10000));
         console.log(localStorage.getItem('userID'));
       }
+      var showSource = function() {
+        var hasOutput = $("[id$=output-box]").length;
+        if(hasOutput == 5) {
+          $("#source-another").hide();
+          $("#source-first").show();
+        } else {
+          $("#source-first").hide();
+          $("#source-another").show();
+        }
+      }
       var cloneAndAddFunctionality = function(inputBox) {
         $("#source-first").hide();
+        $("#source-another").hide();
         var $copy = $(inputBox).clone();
-        var $newID = $copy.attr('id') + " " + $userVar;
+        var $newID = "" + $userVar +  $copy.attr('id') + "-real" ;
         $copy = $copy.attr("id",$newID);
         $userVar++;
-        $copy.appendTo("#paste-area");
+        $copy.prependTo("#paste-area");
         $copy.show();
         $(".link2").click(function(){
-          $("#source-first").show();
+          showSource();
           $($copy).remove();
           $userVar--;
           $("#debt-selector-box").show();
@@ -78,25 +89,38 @@
             $(this).text(outputArray[index]);
           });
           output.find('.hollow-button').click(function(){
-            output.hide();
+            output.remove();
+            $("#source-another").hide();
+            $("#source-first").hide();
+            $("#debt-selector-box").hide();
             $copy.show();
           });
           output.find('.ghost').click(function(){
             //TODO:Add overlay to confirm
-            $("#source-first").show();
             output.remove();
+            showSource();
             $copy.remove();
             $userVar--;
             $("#debt-selector-box").show();
           });
-          output.appendTo("#paste-area");
+          output.prependTo("#paste-area");
           output.show();
+          showSource();
+          $("#debt-selector-box").show();
           $copy.hide();
           return false; // return false to cancel form action
         });
         $("#debt-selector-box").hide();
       }
-      //TODO: Save and continue button
+      $("#saveButton").click(function() {
+        $("[id$=input-box-real]").each(function(){
+            var input = $(this);
+            if(input.is(":visible")) {
+              input.find("input[type=submit]").click();
+            }
+        });
+      });
+      //TODO: Issues with duplicating when editing multiple
       $("#dropdown-credit-card").click(function(){ cloneAndAddFunctionality("#debt-credit-card-input-box") });
       $("#dropdown-student-loan").click(function(){ cloneAndAddFunctionality("#debt-student-loan-input-box") });
       $("#dropdown-payday-loan").click(function(){ cloneAndAddFunctionality("#debt-payday-loan-input-box") });
